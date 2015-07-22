@@ -6,9 +6,18 @@
             return {
                 restrict: "E",
                 templateUrl: "/Scripts/AngularApp/Shared/cacheList/cacheList.directive.html",
-                controller: function ($scope) {
-                    console.log("Service");
-                    console.log(GeocachingDataService.getCaches());
+                link: function (scope, element, attrs) {
+                    /* initialize */
+                    scope.loading = true;
+                    GeocachingDataService.getCaches().success(function () {
+                        scope.loading = false;
+                    });
+
+                    scope.geocaching = GeocachingDataService;
+
+                    scope.deleteCache = function (id) {
+                        GeocachingDataService.deleteCache(id);
+                    }
                 }
             }
         }]);

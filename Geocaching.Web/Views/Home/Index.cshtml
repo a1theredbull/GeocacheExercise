@@ -1,13 +1,14 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-}
-
-<div class="jumbotron">
-    <h1>Geocaching</h1>
-    <button type="button" class="btn btn-lg btn-primary">Add Geocache</button>
+﻿<div class="row">
+    <div class="col-sm-12">
+        <h1 id="page-header">Geocaches</h1>
+        <add-cache></add-cache>
+    </div>
+</div>
+<div class="row mt20">
+    <div class="col-sm-12">
+        <cache-list></cache-list>
+    </div>
 </div>
 
-<cache-list></cache-list>
-
+<script src="~/Scripts/AngularApp/Shared/cacheList/addCache.directive.js"></script>
 <script src="~/Scripts/AngularApp/Shared/cacheList/cacheList.directive.js"></script>

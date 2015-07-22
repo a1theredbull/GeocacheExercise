@@ -7,9 +7,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Geocaching.API.Controllers
 {
+    [EnableCors(origins: "http://localhost:56216", headers: "*", methods: "*")]
     public class GeocacheController : ApiController
     {
         // TODO: Dependency Inject Repo
@@ -43,12 +45,15 @@ namespace Geocaching.API.Controllers
         }
 
         // POST api/<controller>
-        public void Post([FromBody]GeocacheModel newCache)
+        public GeocacheModel Post([FromBody]GeocacheModel newCache)
         {
             using (GeocachingContext db = new GeocachingContext())
             {
-                db.Geocaches.Add(newCache.Map());
+                Geocache newDbCache = db.Geocaches.Add(newCache.Map());
                 db.SaveChanges();
+                newCache.ID = newDbCache.ID;
+
+                return newCache; 
             }
         }
 

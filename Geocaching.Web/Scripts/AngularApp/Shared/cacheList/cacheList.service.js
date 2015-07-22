@@ -8,6 +8,11 @@
                     return $http.get(API_URL + "/geocache")
                         .success(function (data) {
                             service.caches = data;
+
+                            //auto-select first cache
+                            if (data.length > 0) {
+                                service.selectedCache = data[0];
+                            }
                         })
                         .error(function (data) {
                             console.error("Error retreiving caches: " + data);
@@ -17,27 +22,31 @@
                 function addCache(cache) {
                     return $http.post(API_URL + "/geocache", cache)
                         .success(function (data) {
-                            getCaches();
+                            service.caches.push(data);
                         })
                         .error(function(data) {
                             console.error("Error adding cache: " + data);
-                            getCaches();
                         });
                 }
 
                 function deleteCache(id) {
                     return $http.delete(API_URL + "/geocache/" + id)
                         .success(function (data) {
-                            getCaches();
+                            //manual remove, could $.grep here
+                            for (var i = 0; i < service.caches.length; i++) {
+                                if (service.caches[i].ID == id) {
+                                    service.caches.splice(i, 1);
+                                }
+                            }
                         })
                         .error(function (data) {
                             console.error("Error deleting cache: " + data);
-                            getCaches();
                         });
                 }
 
                 var service = {
                     caches: [],
+                    selectedCache: {},
                     getCaches: getCaches,
                     addCache: addCache,
                     deleteCache: deleteCache

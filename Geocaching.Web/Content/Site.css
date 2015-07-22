@@ -1,18 +1,39 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿body,
+html,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Source Sans Pro', sans-serif !important;
 }
-
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+.mt5 {
+  margin-top: 5px;
 }
-
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.mt10 {
+  margin-top: 10px;
 }
+.mt15 {
+  margin-top: 15px;
+}
+.mt20 {
+  margin-top: 20px;
+}
+.mt25 {
+  margin-top: 25px;
+}
+.mt30 {
+  margin-top: 30px;
+}
+.cache {
+  cursor: pointer;
+}
+.cache.selected {
+  background-color: black;
+  color: lightgray;
+}
+/* Glyphicon overrides */
 
+.glyphicon.glyphicon-remove {
+  cursor: pointer;
+}

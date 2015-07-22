@@ -1,1 +1,26 @@
-﻿<h3>HELLO</h3>
+﻿<div ng-show="loading">
+    <span>Loading... (API may be slow to start up on localhost)</span>
+</div>
+<div ng-hide="loading">
+    <div class="row">
+        <div class="col-sm-6">
+            <ul class="list-group">
+                <li ng-repeat="cache in geocaching.caches" class="list-group-item cache" 
+                    ng-class="{ selected: cache.ID == geocaching.selectedCache.ID }"
+                    ng-click="geocaching.selectedCache = cache">
+                    <span>{{cache.Name}} | {{cache.ID}}</span>
+                    <div class="pull-right">
+                        <i class="glyphicon glyphicon-remove text-danger" ng-click="deleteCache(cache.ID)"></i>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-6">
+            <h3>Geocache Details</h3>
+            <h4 ng-show="geocaching.selectedCache.ID">{{geocaching.selectedCache.Name}}</h4>
+            <h4 ng-show="!geocaching.selectedCache.ID">Please select a cache.</h4>
+            <div>Longitude: {{geocaching.selectedCache.Longitude}}</div>
+            <div>Latitude: {{geocaching.selectedCache.Latitude}}</div>
+        </div>
+    </div>
+</div>
