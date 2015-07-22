@@ -3,5 +3,11 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Geocaching</h2>
+<div class="jumbotron">
+    <h1>Geocaching</h1>
+    <button type="button" class="btn btn-lg btn-primary">Add Geocache</button>
+</div>
 
+<cache-list></cache-list>
+
+<script src="~/Scripts/AngularApp/Shared/cacheList/cacheList.directive.js"></script>
