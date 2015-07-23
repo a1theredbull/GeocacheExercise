@@ -53,6 +53,8 @@
     <Compile Include="DAL\GeocachingInitializer.cs" />
     <Compile Include="Models\Geocache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\IGeocacheRepository.cs" />
+    <Compile Include="Repository\Implementation\GeocacheRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

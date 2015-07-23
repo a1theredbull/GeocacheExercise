@@ -4,6 +4,7 @@
 <div ng-hide="loading">
     <div class="row">
         <div class="col-sm-6">
+            <span class="text-danger" ng-show="geocaching.caches.length == 0">There are no caches saved. Please add one above!</span>
             <ul class="list-group">
                 <li ng-repeat="cache in geocaching.caches" class="list-group-item cache" 
                     ng-class="{ selected: cache.ID == geocaching.selectedCache.ID }"
@@ -16,11 +17,20 @@
             </ul>
         </div>
         <div class="col-sm-6">
-            <h3>Geocache Details</h3>
-            <h4 ng-show="geocaching.selectedCache.ID">{{geocaching.selectedCache.Name}}</h4>
-            <h4 ng-show="!geocaching.selectedCache.ID">Please select a cache.</h4>
-            <div>Longitude: {{geocaching.selectedCache.Longitude}}</div>
-            <div>Latitude: {{geocaching.selectedCache.Latitude}}</div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">Geocache Details</div>
+                <div class="panel-body">
+                    <h4 ng-show="geocaching.selectedCache.ID">{{geocaching.selectedCache.Name}}</h4>
+                    <h4 ng-show="!geocaching.selectedCache.ID">Please select a cache.</h4>
+                    <div>Latitude: {{geocaching.selectedCache.Latitude}}</div>
+                    <div>Longitude: {{geocaching.selectedCache.Longitude}}</div>
+                    <div class="mt10" ng-init="IntializeMarker()">
+                        <ui-gmap-google-map center="map.center" zoom="map.zoom">
+                            <ui-gmap-marker coords="map.marker" idkey="map.markerID"></ui-gmap-marker>
+                        </ui-gmap-google-map>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

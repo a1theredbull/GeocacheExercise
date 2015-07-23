@@ -23,6 +23,7 @@
                     return $http.post(API_URL + "/geocache", cache)
                         .success(function (data) {
                             service.caches.push(data);
+                            service.selectedCache = data;
                         })
                         .error(function(data) {
                             console.error("Error adding cache: " + data);

@@ -1,6 +1,9 @@
-﻿using Geocaching.Data.Models;
+﻿using Geocaching.API.Filters;
+using Geocaching.Data.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -9,8 +12,15 @@ namespace Geocaching.API.Models
     public class GeocacheModel
     {
         public long ID { get; set; }
+        [Required]
+        [StringLength(50)]
+        [UniqueGeocacheName]
         public string Name { get; set; }
+        [Required]
+        [Range(-180, 180)]
         public decimal Longitude { get; set; }
+        [Required]
+        [Range(-90, 90)]
         public decimal Latitude { get; set; }
 
         public GeocacheModel(Geocache geocache)

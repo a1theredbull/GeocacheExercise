@@ -3,5 +3,5 @@
 (function () {
     "use strict";
 
-    angular.module("GeocachingApp", ["GeocachingServices"]);
+    angular.module("GeocachingApp", ["GeocachingServices", "uiGmapgoogle-maps"]);
 })();
