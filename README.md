@@ -8,6 +8,7 @@ Exercise for interview process
 ## Next on list of upgrades (not done because of time constraints):
 - Logging errors
 - Adding unit testing on API (wished I did Test-Driven from the start)
+- Adding a task runner for JS/CSS minification and bundling
 - Adding pagination and other filters to get all functions
 - Adding authentication system / ownership system
 - Adding longitude latitude picker with Google Maps
