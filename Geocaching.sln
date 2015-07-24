@@ -8,7 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.json = global.json
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geocaching.Rest", "Geocaching.API\Geocaching.Rest.csproj", "{EF1CF25C-A3FA-4972-AE3C-9CE5D6122AD1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geocaching.Rest", "Geocaching.Rest\Geocaching.Rest.csproj", "{EF1CF25C-A3FA-4972-AE3C-9CE5D6122AD1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geocaching.Data", "Geocaching.Data\Geocaching.Data.csproj", "{4454081F-10E1-438B-946C-4B807EE4FAD0}"
 EndProject
