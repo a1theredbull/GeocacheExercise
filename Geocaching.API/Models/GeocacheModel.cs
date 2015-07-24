@@ -1,20 +1,21 @@
-﻿using Geocaching.API.Filters;
-using Geocaching.Data.Models;
+﻿using Geocaching.Rest.Filters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using Geocaching.Domain;
+using Geocaching.Repository.Models;
 
-namespace Geocaching.API.Models
+namespace Geocaching.Rest.Models
 {
     public class GeocacheModel
     {
         public long ID { get; set; }
         [Required]
-        [StringLength(50)]
         [UniqueGeocacheName]
+        [StringLength(50)]
         public string Name { get; set; }
         [Required]
         [Range(-180, 180)]
@@ -23,7 +24,7 @@ namespace Geocaching.API.Models
         [Range(-90, 90)]
         public decimal Latitude { get; set; }
 
-        public GeocacheModel(Geocache geocache)
+        public GeocacheModel(IGeocache geocache)
         {
             if(geocache != null)
             {
@@ -34,9 +35,9 @@ namespace Geocaching.API.Models
             }
         }
 
-        public Geocache Map()
+        public IGeocache MapToRepoModel()
         {
-            Geocache geocache = new Geocache()
+            IGeocache geocache = new RepoGeocache()
             {
                 ID = this.ID,
                 Name = this.Name,

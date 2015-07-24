@@ -1,7 +1,5 @@
-﻿using Geocaching.API.Filters;
-using Geocaching.API.Models;
-using Geocaching.Data.DAL;
-using Geocaching.Data.Models;
+﻿using Geocaching.Rest.Filters;
+using Geocaching.Rest.Models;
 using Geocaching.Data.Repository;
 using System;
 using System.Collections.Generic;
@@ -10,8 +8,10 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using Geocaching.Domain.Repository;
+using Geocaching.Domain;
 
-namespace Geocaching.API.Controllers
+namespace Geocaching.Rest.Controllers
 {
     [EnableCors(origins: "http://localhost:56216", headers: "*", methods: "*")]
     public class GeocacheController : ApiController
@@ -24,37 +24,80 @@ namespace Geocaching.API.Controllers
         }
 
         // GET api/geocache
-        public IEnumerable<GeocacheModel> Get()
+        public HttpResponseMessage Get()
         {
-            IEnumerable<Geocache> allCaches = _repository.GetAllGeocaches();
-            List<GeocacheModel> models = new List<GeocacheModel>();
-            // note: could swap out for automapping library
-            foreach (var geocache in allCaches)
+            try
             {
-                models.Add(new GeocacheModel(geocache));
+                IEnumerable<IGeocache> allCaches = _repository.GetAllGeocaches();
+                List<GeocacheModel> models = new List<GeocacheModel>();
+                foreach (var geocache in allCaches)
+                {
+                    models.Add(new GeocacheModel(geocache));
+                }
+                return Request.CreateResponse(HttpStatusCode.OK, models);
             }
-            return models;
+            catch(Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex);
+            }
         }
 
         // GET api/geocache/5
-        public GeocacheModel Get(long id)
+        public HttpResponseMessage Get(long id)
         {
-            return new GeocacheModel(_repository.GetGeocacheByID(id));
+            try
+            {
+                var foundCache = _repository.GetGeocacheByID(id);
+                if(foundCache != null)
+                {
+                    var foundCacheModel = new GeocacheModel(foundCache);
+                    return Request.CreateResponse(HttpStatusCode.OK, foundCacheModel);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                }
+            }
+            catch(Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex);
+            }
         }
 
         // POST api/geocache
         [ValidateModel]
-        public GeocacheModel Post([FromBody]GeocacheModel newCache)
+        public HttpResponseMessage Post([FromBody]GeocacheModel newCache)
         {
-            Geocache newDbCache = _repository.AddGeocache(newCache.Map());
-            newCache.ID = newDbCache.ID;
-            return newCache;
+            try
+            {
+                IGeocache newDbCache = _repository.AddGeocache(newCache.MapToRepoModel());
+                newCache.ID = newDbCache.ID;
+                return Request.CreateResponse(HttpStatusCode.OK, newCache);
+            }
+            catch(Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex);
+            }
         }
 
         // DELETE api/geocache/5
-        public void Delete(int id)
+        public HttpResponseMessage Delete(int id)
         {
-            _repository.DeleteGeocache(id);
+            try
+            {
+                var foundCache = _repository.GetGeocacheByID(id);
+                if (foundCache == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                }
+
+                _repository.DeleteGeocache(id);
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch(Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex);
+            }
         }
     }
 }

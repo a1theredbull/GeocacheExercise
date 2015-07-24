@@ -8,11 +8,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.json = global.json
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geocaching.API", "Geocaching.API\Geocaching.API.csproj", "{EF1CF25C-A3FA-4972-AE3C-9CE5D6122AD1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geocaching.Rest", "Geocaching.API\Geocaching.Rest.csproj", "{EF1CF25C-A3FA-4972-AE3C-9CE5D6122AD1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geocaching.Data", "Geocaching.Data\Geocaching.Data.csproj", "{4454081F-10E1-438B-946C-4B807EE4FAD0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geocaching.Web", "Geocaching.Web\Geocaching.Web.csproj", "{52F061D9-9469-44D5-AC1A-516875E218BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geocaching.Repository", "Geocaching.Repository\Geocaching.Repository.csproj", "{AB770963-2D4E-4232-8151-6898A6DB9ED7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geocaching.Domain", "Geocaching.Domain\Geocaching.Domain.csproj", "{61E469DC-CEB6-4189-9A51-484E9D2696A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +36,14 @@ Global
 		{52F061D9-9469-44D5-AC1A-516875E218BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52F061D9-9469-44D5-AC1A-516875E218BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52F061D9-9469-44D5-AC1A-516875E218BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB770963-2D4E-4232-8151-6898A6DB9ED7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB770963-2D4E-4232-8151-6898A6DB9ED7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB770963-2D4E-4232-8151-6898A6DB9ED7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB770963-2D4E-4232-8151-6898A6DB9ED7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61E469DC-CEB6-4189-9A51-484E9D2696A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61E469DC-CEB6-4189-9A51-484E9D2696A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61E469DC-CEB6-4189-9A51-484E9D2696A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61E469DC-CEB6-4189-9A51-484E9D2696A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

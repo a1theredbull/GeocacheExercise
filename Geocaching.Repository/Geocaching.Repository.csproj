@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4454081F-10E1-438B-946C-4B807EE4FAD0}</ProjectGuid>
+    <ProjectGuid>{AB770963-2D4E-4232-8151-6898A6DB9ED7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Geocaching.Data</RootNamespace>
-    <AssemblyName>Geocaching.Data</AssemblyName>
+    <RootNamespace>Geocaching.Repository</RootNamespace>
+    <AssemblyName>Geocaching.Repository</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -49,20 +49,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\GeocachingContext.cs" />
-    <Compile Include="DAL\GeocachingInitializer.cs" />
-    <Compile Include="Models\Geocache.cs" />
+    <Compile Include="GeocacheRepository.cs" />
+    <Compile Include="Models\RepoGeocache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Geocaching.Data\Geocaching.Data.csproj">
+      <Project>{4454081f-10e1-438b-946c-4b807ee4fad0}</Project>
+      <Name>Geocaching.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Geocaching.Domain\Geocaching.Domain.csproj">
       <Project>{61e469dc-ceb6-4189-9a51-484e9d2696a3}</Project>
       <Name>Geocaching.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

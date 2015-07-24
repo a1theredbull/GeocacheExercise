@@ -1,11 +1,13 @@
-﻿using Geocaching.Data.DAL;
+﻿using Geocaching.Data.Repository.Implementation;
+using Geocaching.Domain.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
-namespace Geocaching.API.Filters
+namespace Geocaching.Rest.Filters
 {
     public class UniqueGeocacheNameAttribute : ValidationAttribute
     {
@@ -13,16 +15,14 @@ namespace Geocaching.API.Filters
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            using(GeocachingContext db = new GeocachingContext())
+            var repo = DependencyResolver.Current.GetService<IGeocacheRepository>();
+            if (repo.IsUniqueName(value.ToString()))
             {
-                if(!db.Geocaches.Any(x => x.Name == value.ToString()))
-                {
-                    return ValidationResult.Success;
-                }
-                else
-                {
-                    return new ValidationResult(UniqueNameViolationMessage);
-                }
+                return ValidationResult.Success;
+            }
+            else
+            {
+                return new ValidationResult(UniqueNameViolationMessage);
             }
         }
     }

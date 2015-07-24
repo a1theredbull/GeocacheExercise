@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 
-namespace Geocaching.API.Filters
+namespace Geocaching.Rest.Filters
 {
     public class ValidateModelAttribute : ActionFilterAttribute
     {

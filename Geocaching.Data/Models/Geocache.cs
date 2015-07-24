@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Geocaching.Domain;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -7,12 +8,21 @@ using System.Threading.Tasks;
 
 namespace Geocaching.Data.Models
 {
-    public class Geocache
+    public class Geocache : BaseGeocache
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long ID { get; set; }
-        public string Name { get; set; }
-        public decimal Longitude { get; set; }
-        public decimal Latitude { get; set; }
+        public override long ID { get; set; }
+
+        public Geocache()
+        {
+        }
+
+        public Geocache(IGeocache geocache)
+        {
+            this.ID = geocache.ID;
+            this.Name = geocache.Name;
+            this.Latitude = geocache.Latitude;
+            this.Longitude = geocache.Longitude;
+        }
     }
 }
