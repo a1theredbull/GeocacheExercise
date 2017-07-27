@@ -23,7 +23,7 @@ namespace Geocaching.Rest
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             GlobalConfiguration.Configuration.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
 
-            ///* Autofac configuration */
+            // Autofac configuration
             var builder = new ContainerBuilder();
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
@@ -31,7 +31,7 @@ namespace Geocaching.Rest
 
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver((IContainer)container));
-            GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver((IContainer)container); ;
+            GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver((IContainer)container);
         }
 
         public void FixEfProviderServicesProblem()
